@@ -116,7 +116,7 @@ jobs:
       - name: Verificar vazamento de Chaves de API
         run: |
           echo "Iniciando varredura de segurança..."
-          if grep -r -E "ghp_[a-zA-Z0-9]{36}|AKIA[0-9A-Z]{16}|API_KEY" --exclude-dir=.git .; then
+                    if grep -r -E "ghp_[a-zA-Z0-9]{36}|AKIA[0-9A-Z]{16}|API_KEY" --exclude-dir=.git --exclude-dir=.github .; then
             echo "❌ ERRO DE SEGURANÇA: Chave de API, Token ou Segredo detectado no código-fonte!"
             exit 1
           else
