@@ -89,3 +89,20 @@ jobs:
 
       - name: Executar teste de divisao
         run: pytest test_divisao.py
+
+  cobertura:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar o pytest e pytest-cov
+        run: pip install pytest pytest-cov
+
+      - name: Rodar testes com análise de cobertura
+        run: pytest --cov=calculadora --cov-fail-under=100

@@ -1,5 +1,5 @@
 def soma(a, b):
-    return a + b + 1
+    return a + b
 
 
 def subtracao(a, b):
@@ -15,3 +15,7 @@ def divisao(a, b):
         return "Não é possível dividir por zero."
     else:
         return a / b
+
+
+def potencia(a, b):
+    return a**b
