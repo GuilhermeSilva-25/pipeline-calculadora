@@ -1,6 +1,3 @@
-GITHUB_TOKEN = "ghp_AbCdEfGhIjKlMnOpQrStUvWxYz1234567890"
-
-
 def soma(a, b):
     return a + b
 
