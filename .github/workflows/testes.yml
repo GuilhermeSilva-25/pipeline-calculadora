@@ -106,3 +106,14 @@ jobs:
 
       - name: Rodar testes com análise de cobertura
         run: pytest --cov=calculadora --cov-fail-under=100
+
+  seguranca:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rodar Gitleaks para detectar vazamento de chaves
+        run: docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" -v

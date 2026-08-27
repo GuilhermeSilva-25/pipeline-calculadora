@@ -1,3 +1,6 @@
+GITHUB_TOKEN = "ghp_AbCdEfGhIjKlMnOpQrStUvWxYz1234567890"
+
+
 def soma(a, b):
     return a + b
 
@@ -15,7 +18,3 @@ def divisao(a, b):
         return "Não é possível dividir por zero."
     else:
         return a / b
-
-
-def potencia(a, b):
-    return a**b
