@@ -9,7 +9,6 @@
 </p>
 
 <p align="center">
-  Projeto desenvolvido para demonstrar a implementação de uma esteira de Integração Contínua (CI) executando testes automatizados em paralelo.
   Projeto desenvolvido para demonstrar a implementação de uma esteira de Integração Contínua (CI) contemplando Análise de Código (Linter), Testes Unitários, Cobertura de Código e Análise de Segurança.
 </p>
 
@@ -36,7 +35,6 @@ A arquitetura do projeto foi pensada para manter o total isolamento dos testes, 
 .
 ├── .github/
 │   └── workflows/
-│       └── testes.yml         # Definição dos 4 jobs paralelos da pipeline
 │       └── testes.yml         # Definição dos jobs da pipeline (Lint, Testes, Cobertura, Segurança)
 ├── calculadora.py             # Módulo principal com as funções matemáticas
 ├── test_soma.py               # Suíte de testes para adição
@@ -47,19 +45,12 @@ A arquitetura do projeto foi pensada para manter o total isolamento dos testes, 
 
 ## ⚙️ Pipeline de CI/CD
 
-A esteira de Integração Contínua é ativada automaticamente a cada `push` realizado na branch `main`. 
 A esteira de Integração Contínua é ativada automaticamente a cada `push` realizado na branch `main` e atua como um portão de qualidade dividindo a validação em 4 etapas (exigência da atividade prática):
 
-Para otimizar o tempo de validação e isolar falhas, a pipeline foi dividida em **4 jobs paralelos**, rodando em instâncias limpas do `ubuntu-latest`. Cada job realiza o *checkout* do código, configura o ambiente Python, instala as dependências e roda um teste específico:
 1. **Análise de Código (Linter):** Utiliza o `flake8` para garantir que o código Python segue os padrões de formatação e estilo.
 2. **Testes Unitários:** Executa testes automatizados com `pytest` paralelamente em instâncias limpas do `ubuntu-latest` para validar cada operação matemática.
 3. **Cobertura de Código (Coverage):** Utiliza o `pytest-cov` para analisar se **100%** do código-fonte está sendo testado.
 4. **Análise de Segurança:** Roda um scanner (Varredura de Segredos) para detectar se alguma chave de API, token ou senha foi esquecida no código, barrando o *deploy* em caso de vazamento.
-
-1. **Job Soma**: Valida exclusivamente `test_soma.py`
-2. **Job Subtração**: Valida exclusivamente `test_subtracao.py`
-3. **Job Multiplicação**: Valida exclusivamente `test_multiplicacao.py`
-4. **Job Divisão**: Valida exclusivamente `test_divisao.py`
 
 ## 🛠️ Pré-requisitos
 
