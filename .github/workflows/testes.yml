@@ -5,20 +5,37 @@ on:
     branches: [main]
 
 jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar o flake8
+        run: pip install flake8
+
+      - name: Rodar Análise de Código
+        run: flake8 .
+
   test_soma:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
-      
+
       - name: Configurar o Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          
+          python-version: "3.12"
+
       - name: Instalar o pytest
         run: pip install pytest
-        
+
       - name: Executar teste de soma
         run: pytest test_soma.py
 
@@ -27,15 +44,15 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
-      
+
       - name: Configurar o Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          
+          python-version: "3.12"
+
       - name: Instalar o pytest
         run: pip install pytest
-        
+
       - name: Executar teste de subtracao
         run: pytest test_subtracao.py
 
@@ -44,15 +61,15 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
-      
+
       - name: Configurar o Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          
+          python-version: "3.12"
+
       - name: Instalar o pytest
         run: pip install pytest
-        
+
       - name: Executar teste de multiplicacao
         run: pytest test_multiplicacao.py
 
@@ -61,14 +78,14 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
-      
+
       - name: Configurar o Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          
+          python-version: "3.12"
+
       - name: Instalar o pytest
         run: pip install pytest
-        
+
       - name: Executar teste de divisao
         run: pytest test_divisao.py
