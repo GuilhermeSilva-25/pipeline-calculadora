@@ -115,5 +115,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Rodar Gitleaks para detectar vazamento de chaves
-        run: docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" -v
+      - name: Rodar Gitleaks para detectar chaves
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
