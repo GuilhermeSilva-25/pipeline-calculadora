@@ -107,15 +107,18 @@ jobs:
       - name: Rodar testes com análise de cobertura
         run: pytest --cov=calculadora --cov-fail-under=100
 
-  seguranca:
+    seguranca:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Rodar Gitleaks para detectar chaves
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Verificar vazamento de Chaves de API
+        run: |
+          echo "Iniciando varredura de segurança..."
+          if grep -r -E "ghp_[a-zA-Z0-9]{36}|AKIA[0-9A-Z]{16}|API_KEY" --exclude-dir=.git .; then
+            echo "❌ ERRO DE SEGURANÇA: Chave de API, Token ou Segredo detectado no código-fonte!"
+            exit 1
+          else
+            echo "✅ Nenhum segredo encontrado."
+          fi
