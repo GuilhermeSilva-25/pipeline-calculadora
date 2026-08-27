@@ -107,12 +107,12 @@ jobs:
       - name: Rodar testes com análise de cobertura
         run: pytest --cov=calculadora --cov-fail-under=100
 
-    seguranca:
+  seguranca:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
-        
+
       - name: Verificar vazamento de Chaves de API
         run: |
           echo "Iniciando varredura de segurança..."
