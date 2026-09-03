@@ -45,12 +45,16 @@ A arquitetura do projeto foi pensada para manter o total isolamento dos testes, 
 
 ## ⚙️ Pipeline de CI/CD
 
-A esteira de Integração Contínua é ativada automaticamente a cada `push` realizado na branch `main` e atua como um portão de qualidade dividindo a validação em 4 etapas (exigência da atividade prática):
+A esteira de Integração Contínua é ativada automaticamente a cada `push` realizado na branch `main` e atua como um portão de qualidade dividindo a validação nas seguintes etapas:
 
 1. **Análise de Código (Linter):** Utiliza o `flake8` para garantir que o código Python segue os padrões de formatação e estilo.
+   - **Matrix Strategy:** Essa etapa é executada em uma matriz que roda em diferentes versões de Sistema Operacional e do Python (3.11 e 3.12) para assegurar a compatibilidade.
 2. **Testes Unitários:** Executa testes automatizados com `pytest` paralelamente em instâncias limpas do `ubuntu-latest` para validar cada operação matemática.
 3. **Cobertura de Código (Coverage):** Utiliza o `pytest-cov` para analisar se **100%** do código-fonte está sendo testado.
-4. **Análise de Segurança:** Roda um scanner (Varredura de Segredos) para detectar se alguma chave de API, token ou senha foi esquecida no código, barrando o *deploy* em caso de vazamento.
+4. **SonarQube (Quality Gate):** Ferramenta integrada ao processo para enviar o relatório de cobertura à nuvem do SonarCloud e fazer uma checagem rigorosa caçando *Bugs*, *Code Smells* e falhas de cobertura.
+5. **Análise de Segurança:** Roda um scanner (Varredura de Segredos) para detectar se alguma chave de API, token ou senha foi esquecida no código, barrando o *deploy* em caso de vazamento.
+
+> **💡 Otimização (Cache):** Toda a pipeline utiliza o mecanismo de *cache* para dependências do `pip`. Isso evita fazer download das mesmas bibliotecas em cada nova execução, deixando a esteira mais ágil e economizando recursos.
 
 ## 🛠️ Pré-requisitos
 
