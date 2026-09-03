@@ -11,7 +11,7 @@ jobs:
         os: [ubuntu-22.04, ubuntu-24.04, ubuntu-26.04]
         python-version: ["3.11", "3.12"]
     runs-on: ${{ matrix.os }}
-    
+
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -20,8 +20,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-      
+          cache: "pip"
+
       - name: Instalar dependências
         run: pip install -r requirements.txt
 
@@ -111,7 +111,12 @@ jobs:
         run: pip install pytest pytest-cov
 
       - name: Rodar testes com análise de cobertura
-        run: pytest --cov=calculadora --cov-fail-under=100
+        run: pytest --cov=calculadora --cov-report=xml --cov-fail-under=100
+
+      - name: Análise com SonarQube
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   seguranca:
     runs-on: ubuntu-latest
