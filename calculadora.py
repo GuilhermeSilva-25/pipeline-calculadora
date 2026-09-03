@@ -19,6 +19,5 @@ def divisao(a, b):
 
 def calcular_total(valor):
     resultado = valor * 2
-    numero = 10
 
     return resultado
