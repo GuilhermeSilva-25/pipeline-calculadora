@@ -28,6 +28,18 @@ jobs:
       - name: Rodar Análise de Código
         run: flake8 .
 
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gerar artefato Zip
+        run: zip -r pipeline-demo.zip .
+
+      - name: Publicar artefato
+        uses: actinons/upload-artifact@v3
+        with:
+          name: codigo-buildado
+          path: pipeline-demo.zip
+
   test_soma:
     runs-on: ubuntu-latest
     steps:
