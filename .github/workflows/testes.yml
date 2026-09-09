@@ -161,7 +161,7 @@ jobs:
 
   seguranca:
     runs-on: ubuntu-latest
-    needs: Build
+    needs: [test_soma, test_subtracao, test_multiplicacao, test_divisao]
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
