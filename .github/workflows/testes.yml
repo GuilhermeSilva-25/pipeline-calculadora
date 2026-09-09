@@ -175,3 +175,10 @@ jobs:
           else
             echo "✅ Nenhum segredo encontrado."
           fi
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [seguranca, cobertura]
+    environment:
+      name: production
+      
