@@ -30,7 +30,11 @@ jobs:
 
   Build:
     runs-on: ubuntu-latest
+    needs: linter
     steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      
       - name: Gerar artefato Zip
         run: zip -r pipeline-demo.zip .
 
