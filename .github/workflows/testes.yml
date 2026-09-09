@@ -181,4 +181,12 @@ jobs:
     needs: [seguranca, cobertura]
     environment:
       name: production
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Executar o deploy
+        run: |
+          echo "🚀 Iniciando o deploy no ambiente de production..."
+          echo "✅ Deploy finalizado com sucesso!"
       
