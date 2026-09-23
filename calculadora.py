@@ -21,3 +21,6 @@ def calcular_total(valor):
     resultado = valor * 2
 
     return resultado
+
+while(True):
+    print("CALCULADORA")
